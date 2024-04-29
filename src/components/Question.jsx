@@ -1,11 +1,19 @@
-import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import React, { useState } from 'react';
+import { useEffect } from "react";
 import { classNames } from "../utils.js"
+import hljs from 'highlight.js/lib/core';
+import javascript from 'highlight.js/lib/languages/javascript';
+
+// Then register the languages you need
+hljs.registerLanguage('javascript', javascript);
 
 export function Question({ allowChange = true, number, question, answer, code, choices, debug, chooseAnswer }) {
 
   const [chosen, setChosen] = useState(undefined);
+
+  useEffect(() => {
+    hljs.highlightAll();
+  }, [])
 
   return (<div>
     <h1 className="text-3xl font-bold tracking-tight text-gray-900 my-4 block">Question #{number}
@@ -17,11 +25,7 @@ export function Question({ allowChange = true, number, question, answer, code, c
 
     <span className="text-xl">Question: {question}</span>
 
-    {JSON.stringify(oneDark)}
-
-    <SyntaxHighlighter style={oneDark} language="javascript" showLineNumbers>
-      {code}
-    </SyntaxHighlighter>
+    <pre><code className="my-4 language-javascript hljs rounded-lg">{code}</code></pre>
 
     {choices.map((choice, i) => <div key={choice}>
       {"ABCD".charAt(i % 4)}: <button
