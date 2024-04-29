@@ -17,6 +17,8 @@ export function Question({ allowChange = true, number, question, answer, code, c
 
     <span className="text-xl">Question: {question}</span>
 
+    {JSON.stringify(oneDark)}
+
     <SyntaxHighlighter style={oneDark} language="javascript" showLineNumbers>
       {code}
     </SyntaxHighlighter>
