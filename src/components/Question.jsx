@@ -16,14 +16,14 @@ export function Question({ allowChange = true, number, question, answer, code, c
   }, [])
 
   return (<div>
-    <h1 className="text-3xl font-bold tracking-tight text-gray-900 my-4 block">Question #{number}
+    <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900 my-4 block">Question #{number}
       {debug && <button
         onClick={e => { try { eval('(async () => {' + code.replaceAll('console\.log', 'alert') + '})()') } catch (e) { alert('error: ' + e.toString()) } }}
-        className='ml-2 px-2 bg-orange-400 shadow-sm rounded-md font-bold inline-block text-sm align-middle'>CLICK HERE TO RUN CODE</button>
+        className='ml-2 px-2 bg-orange-400 shadow-sm rounded-md font-bold inline-block text-sm align-middle'>Click to Run</button>
       }
     </h1>
 
-    <span className="text-xl">Question: {question}</span>
+    <span className="text-xl">Q: {question}</span>
 
     <pre><code className="my-4 language-javascript hljs rounded-lg">{code}</code></pre>
 
